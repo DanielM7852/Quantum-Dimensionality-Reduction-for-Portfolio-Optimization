@@ -5,6 +5,7 @@ from collections import OrderedDict
 
 from fastapi import APIRouter, HTTPException, Request
 
+from app.core.analysis_limits import validate_for_hosted_api
 from app.schemas import AnalyzeRequest, AnalyzeResponse
 from app.services.pipeline import run_analysis
 
@@ -55,6 +56,11 @@ def _check_rate_limit(client_ip: str) -> None:
 async def analyze(request: AnalyzeRequest, req: Request):
     client_ip = req.client.host if req.client else "unknown"
     _check_rate_limit(client_ip)
+
+    try:
+        validate_for_hosted_api(request)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
 
     key = _cache_key(request)
     cached = _get_cached(key)

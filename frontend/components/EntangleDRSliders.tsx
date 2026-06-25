@@ -4,6 +4,7 @@ type Props = {
   correlationThreshold: number;
   iterations: number;
   rotationScale: number;
+  maxIterations?: number;
   onCorrelationThresholdChange: (value: number) => void;
   onIterationsChange: (value: number) => void;
   onRotationScaleChange: (value: number) => void;
@@ -26,6 +27,7 @@ export function EntangleDRSliders({
   correlationThreshold,
   iterations,
   rotationScale,
+  maxIterations = 3,
   onCorrelationThresholdChange,
   onIterationsChange,
   onRotationScaleChange,
@@ -81,16 +83,16 @@ export function EntangleDRSliders({
           <input
             type="range"
             min={1}
-            max={10}
+            max={maxIterations}
             step={1}
-            value={iterations}
+            value={Math.min(iterations, maxIterations)}
             disabled={disabled}
             onChange={(e) => onIterationsChange(Number(e.target.value))}
             className="w-full accent-indigo-600"
           />
           <div className="mt-1 flex justify-between text-xs text-black">
             <span>1 pass</span>
-            <span>10 passes</span>
+            <span>{maxIterations} passes (hosted max)</span>
           </div>
           <p className="mt-2 text-xs leading-relaxed text-black">
             Each iteration scans all feature pairs again and applies rotations where correlation

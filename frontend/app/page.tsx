@@ -77,7 +77,7 @@ export default function HomePage() {
         {loading && (
           <div className="mt-8 flex items-center justify-center gap-3 text-slate-600">
             <span className="h-5 w-5 animate-spin rounded-full border-2 border-indigo-600 border-t-transparent" />
-            Running 12 model combinations. This may take up to 90 seconds...
+            Running 12 model combinations. This may take up to 30 seconds...
           </div>
         )}
 
