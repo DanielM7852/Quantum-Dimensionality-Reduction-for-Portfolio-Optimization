@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: entangledr-lab-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    envVars:
+      - key: CORS_ORIGINS
+        value: http://localhost:3000
+    healthCheckPath: /health

@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Node
+node_modules/
+.next/
+out/
+
+# Env & secrets
+.env
+.env.local
+.env*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated outputs
+dashboard_final.png
+results/
+results_final.csv
+
+# Logs
+*.log
